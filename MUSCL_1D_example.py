@@ -278,11 +278,16 @@ def s_eval_x_s(x,x_s,x_m,n,A,mdot_0,rho,g,b_0):
 
 def phi(r):
     
+    # an overview of possible flux limiters can be found at https://en.wikipedia.org/wiki/Flux_limiter
+    
     # minmod limiter Eq. 28
-#    val_phi = numpy.maximum(0,numpy.minimum(1,r))
+#    val_phi = numpy.maximum(0,numpy.minimum(1.,r))
+
+    # Koren which tends to be third-order accurate 
+    val_phi = numpy.maximum(0,numpy.minimum(numpy.minimum((2.*r),(2.+r)),2.))
     
     # superbee limiter Eq. 29
-    val_phi = numpy.maximum(0,numpy.minimum(2*r,1),numpy.minimum(r,2))
+#     val_phi = numpy.maximum(0,numpy.minimum(numpy.minimum(2.*r,1.),numpy.minimum(r,2.)))
     
     return val_phi
 
