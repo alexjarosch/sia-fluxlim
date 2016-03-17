@@ -277,19 +277,13 @@ def s_eval_x_s(x,x_s,x_m,n,A,mdot_0,rho,g,b_0):
     return h_back
 
 def phi(r):
-    
     # an overview of possible flux limiters can be found at https://en.wikipedia.org/wiki/Flux_limiter
-    
-    # minmod limiter Eq. 28
-#    val_phi = numpy.maximum(0,numpy.minimum(1.,r))
+    # Flux limiter function by Sweby 1984. For beta = 1.0 its equal to Roe's minmod limiter and for beta = 2.0 its equal to Roe's superbee limiter.
+    # Values of beta between 1 and 2 keep the limiter second-order TVD
+    beta = 2.0
+    phi_sw = numpy.maximum(0, numpy.maximum(numpy.minimum(beta*r, 1.), numpy.minimum(r, beta)))
 
-    # Koren which tends to be third-order accurate 
-    val_phi = numpy.maximum(0,numpy.minimum(numpy.minimum((2.*r),(2.+r)),2.))
-    
-    # superbee limiter Eq. 29
-#     val_phi = numpy.maximum(0,numpy.minimum(numpy.minimum(2.*r,1.),numpy.minimum(r,2.)))
-    
-    return val_phi
+    return phi_sw
 
 ''' DEFINE which routine to run as the main '''
 
