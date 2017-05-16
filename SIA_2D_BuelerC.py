@@ -32,6 +32,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 '''
 
+from __future__ import division, print_function
 import numpy
 import matplotlib.pyplot as plt
 import time
@@ -96,7 +97,7 @@ def main():
             S = S + (M_dot + div_q)*dt_use
             S = numpy.maximum(S,B)
             
-            print 't[year]: %04.3f, dt_use[days]: %.04f' % (t_pass+cfl_t, dt_use*365)
+            print('t[year]: %04.3f, dt_use[days]: %.04f' % (t_pass+cfl_t, dt_use*365))
          
         # check for mass conservation
         H_step = S - B
@@ -105,13 +106,13 @@ def main():
         I_H[H_step>0] = 1
         M_step = M_dot*I_H
         M_vol = M_vol + numpy.sum(M_step)*dx*dy
-        print "t[year]: %.1f current ice volume %.4f" % (t_pass+cfl_t, Vol_step)
-        print "t[year]: %.1f current MB volume %.4f" % (t_pass+cfl_t, M_vol)
-        print "t[year]: %.1f Mass %.11f qm" % (t_pass+cfl_t, Vol_step-M_vol)
+        print("t[year]: %.1f current ice volume %.4f" % (t_pass+cfl_t, Vol_step))
+        print("t[year]: %.1f current MB volume %.4f" % (t_pass+cfl_t, M_vol))
+        print("t[year]: %.1f Mass %.11f qm" % (t_pass+cfl_t, Vol_step-M_vol))
                                                         
     # print timing
     t_needed = (time.time() - tstart)
-    print "it took: " + str(t_needed) + " seconds to solve the problem ;)"
+    print("it took: " + str(t_needed) + " seconds to solve the problem ;)")
     
     # Display the final result
     plt.figure()
@@ -138,8 +139,8 @@ def main():
     err = (Vol_final-Vol_exact)/Vol_exact*100
     err_abs = (Vol_final-Vol_exact_abs)/Vol_exact_abs*100
     
-    print 'The cumulative numerical error is %f percent' % err
-    print 'The cumulative absolute error is %f percent' % err_abs
+    print('The cumulative numerical error is %f percent' % err)
+    print('The cumulative absolute error is %f percent' % err_abs)
 
     plt.show()     
         
