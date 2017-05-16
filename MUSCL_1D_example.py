@@ -26,6 +26,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>
 '''
 
+from __future__ import division, print_function
 import numpy
 import matplotlib.pyplot as plt
 
@@ -125,7 +126,7 @@ def main():
             
             S = numpy.maximum(S,B)                                              # Eq. 7
         
-            print 'MUSCL Year %d, dt_use %f' % (t,dt_use)
+            print('MUSCL Year %d, dt_use %f' % (t,dt_use))
     
     
         if numpy.mod(t,1000.)==0.0:
@@ -172,7 +173,7 @@ def main():
             
             S = numpy.maximum(S,B)    
         
-            print 'Upstream Year %d, dt_use %f' % (t,dt_use)
+            print('Upstream Year %d, dt_use %f' % (t,dt_use))
     
     
         if numpy.mod(t,1000.)==0.0:
@@ -208,7 +209,7 @@ def main():
             
             S = numpy.maximum(S,B)    
         
-            print 'M2 Year %d, dt_use %f' % (t,dt_use)
+            print('M2 Year %d, dt_use %f' % (t,dt_use))
     
     
         if numpy.mod(t,1000.)==0.0:
@@ -234,13 +235,13 @@ def main():
     vol_err_upstream = (vol_upstream-vol_exact)/vol_exact*100
     vol_err_M2 = (vol_M2-vol_exact)/vol_exact*100
     
-    print "vol exact: %e" % vol_exact
-    print "vol muscl: %e" % vol_muscl
-    print "vol upstream: %e" % vol_upstream
-    print "vol M2: %e" % vol_M2
-    print "err muscl %0.3f" % vol_err_muscl
-    print "err upstream: %0.3f" % vol_err_upstream
-    print "err M2 %0.3f" % vol_err_M2
+    print("vol exact: %e" % vol_exact)
+    print("vol muscl: %e" % vol_muscl)
+    print("vol upstream: %e" % vol_upstream)
+    print("vol M2: %e" % vol_M2)
+    print("err muscl %0.3f" % vol_err_muscl)
+    print("err upstream: %0.3f" % vol_err_upstream)
+    print("err M2 %0.3f" % vol_err_M2)
     
     p4, = plt.plot(x/1000,B,'-k',linewidth=2)
     p5, = plt.plot(x/1000,s,'-',linewidth=3,color='#ff7800')
