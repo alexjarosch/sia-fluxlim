@@ -1,0 +1,23 @@
+# This file is used by the version control system git
+# It contains a list of files or file patterns that the software should
+# ignore. If you don't use git you don't need this file.
+
+# Packaging and other things to ignore
+build/
+dist/
+*.egg-info/
+*.egg
+*.py[cod]
+__pycache__/
+*.so
+*~
+
+# PyCharm IDE
+.idea/
+
+# Jupyter Notebooks
+*.ipynb_checkpoints
+
+# pytest
+.cache
+.pytest_cache
